@@ -1,6 +1,7 @@
 from colored import Fore, Back, Style, fore, style, back
 from ValidacionTipos import ValidacionTipos
 
+
 class CrearTablero(ValidacionTipos):
 
     def __init__(self, forma: str, columnas: int) -> None:
@@ -24,23 +25,23 @@ class CrearTablero(ValidacionTipos):
                 ]
             )
 
-    def cambiar_color_fila(self, coordenadaY: int, colores: list[str]):
-        self.validar_tipos(int, coordenadaY)
+    def cambiar_color_fila(self,colores: list[list] = []):
         self.validar_tipos(list, colores)
-        self.validar_tipos_lista(str, colores)
-        if len(colores) > 5:
-            print("no se permiten mas de 5 colores")
+        self.validar_tipos_lista(list, colores)
+        
+        if colores == []:
+            print("En espera")
         else:
             for i in range(len(colores)):
-                self.__tablero[coordenadaY][i][1] = colores[i]
+                for x in range(len(colores[i])):
+                    self.__tablero[i][x][1] = colores[i][x]
 
     @property
     def tablero(self):
         return self.__tablero
 
 
+
+
 tablero1 = CrearTablero("O", 12)
-tablero2 = CrearTablero("?", 12)
-
-
-
+tablero2 = CrearTablero("o", 12)
