@@ -1,6 +1,6 @@
 from colored import Style, fore
 from ValidacionTipos import ValidacionTipos
-from CrearTablero import CrearTablero, tablero1, tablero2
+from CrearTablero import CrearTablero
 
 class PrintTableros(ValidacionTipos):
 
@@ -12,14 +12,14 @@ class PrintTableros(ValidacionTipos):
        
 
     def print_tablero(self):
-
+        print()
         for i in range(len(self.__tablero)):
 
             for j in range(len(self.__tablero[i])):
 
                 print(
                     f"{fore(self.__tablero[i][j][1])}{self.__tablero[i][j][0]}{Style.reset} ",
-                    end=" ",
+                    end="  ",
                 )
 
             for j in range(len(self.__tablero[i])):
@@ -30,10 +30,13 @@ class PrintTableros(ValidacionTipos):
                 )
 
             print()
+        print()
+    
+    
+   
     
    
 
 
 
-Printeo = PrintTableros(tablero=tablero1, tablero_pistas=tablero2)
 
