@@ -49,15 +49,28 @@ class ControlTurnos(ValidacionTipos):
                 or self.__limite_turnos == self.__turnos_pasados
             ):
                 fin_del_juego = True
-                self.__turnos = []
-                self.__pistas = []
+                self.turnos = []
+                self.pistas = []
+                self.__tablero_principal.reiniciar_tablero()
+                self.__tablero_pistas.reiniciar_tablero()
 
         return fin_del_juego
 
     @property
     def turnos(self) -> list[list[str]] | list[None]:
         return self.__turnos
-
+    
+    @turnos.setter
+    def turnos(self, vacio):
+        self.__turnos = vacio
+        
+    @property
+    def pistas(self):
+        return self.__pistas
+    
+    @pistas.setter
+    def pistas(self, vacio):
+        self.__pistas = vacio
     @property
     def turnos_pasados(self) -> int:
         return self.__turnos_pasados
@@ -65,25 +78,7 @@ class ControlTurnos(ValidacionTipos):
     @property
     def limite(self) -> int:
         return self.__limite_turnos
-
-
-
-
-
-# def prueba():
-#     Printeo.print_tablero()
-#     while True:
-#         respuesta_jugador = input("tus colores: ").strip()
-#         myList = respuesta_jugador.split()
-#         juego1.agregar_jugadas(myList)
+    
+   
         
-#         juego1.agregar_pistas()
-#         Printeo.print_tablero()
 
-#         print(juego1.limite)
-#         print(juego1.turnos_pasados)
-
-#         if juego1.verificar_final():
-#             break
-
-# prueba()
