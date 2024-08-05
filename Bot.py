@@ -17,4 +17,3 @@ class Bot(ValidacionTipos):
     
 bot1 = Bot(colores_disponibles,5)
 
-print(tuple(bot1.bot_respuesta))
