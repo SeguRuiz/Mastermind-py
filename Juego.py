@@ -1,5 +1,4 @@
 import time
-import random
 from ValidacionTipos import ValidacionTipos
 from ControlTrunos import ControlTurnos
 from PrintearTablero import PrintTableros
@@ -41,6 +40,7 @@ class Juego(ValidacionTipos):
         print(
             "Los posibles colores a encontrar son: red, green, yellow, blue, cyan, black, white, magenta"
         )
+        print('Los colores pueden ser colocados de est forma: color color color color colo, sin comas solo espacios')
         print(
             "Solo puedes escojer 5 de ellos y esperar que esten en la combinacion oculta"
         )
@@ -93,7 +93,7 @@ class Juego(ValidacionTipos):
         if self.__control_juego.limite == self.__control_juego.turnos_pasados:
             print("Se acabaron los intentos")
         else:
-            print("Hurra ganaste....")
+            print("Ganaste!")
 
     def __juego_bot(self):
         respuesta = (
@@ -116,6 +116,11 @@ class Juego(ValidacionTipos):
                 self.__control_juego.agregar_pistas()
                 self.__mostrar_tableros()
                 time.sleep(0.5)
+            
+            if self.__control_juego.limite == self.__control_juego.turnos_pasados:
+                 print("Se acabaron los intentos")
+            else:
+                 print("El bot adivino")
       
 
     def __comprobar_colores(self, colores: list[str]) -> bool:

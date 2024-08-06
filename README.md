@@ -1,5 +1,5 @@
 
-En este projecto realice un mastermind, utilizando python y usando la estrategia POO,
+En esta ocasion realice un mastermind, utilizando python y usando la estrategia POO,
 a continuacion hare un listado de las clases principales y su rol.
 
 ## CrearTablero
@@ -44,6 +44,23 @@ el fin del juego y reinici los dos tableros junto con las pistas y turnos.
 **Uso general:** Recibir dos tableros de CrearTablero y printearlos con su color por defecto.
 
 1. Leer dos tableros, y en base a su par de (forma, color) printear la matriz en forma de tablero.
+
+## Bot
+
+**Uso general:** Retornar un array de colores al ser llamado
+
+1. Cuando el modo de juego es el bot, es utilizado para tomar su respuesta a ControlTurnos.
+
+## Juego
+
+**Uso general:** Contener los dos modos de juegos principales e inicializar el juego
+
+1. Contener las clases los colores permitiods a escojer, e inicializar las demas clases 
+anteriores para ser utilizadas en el flujo del juego.
+
+2. Recibir las espuestas del usuario en cada intento y por me medio de las funciones de ControlTurnos.
+
+3. Dependiendo de la respuesta del usuario inicializar la funcion de juego por defecto o juego con el bot.
 
 
 
