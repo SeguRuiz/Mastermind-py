@@ -1,6 +1,6 @@
 import random 
 from ValidacionTipos import ValidacionTipos
-colores_disponibles = ["red", "green", "yellow", "blue", "cyan", "black", "white"]
+colores_disponibles = ["red", "green", "yellow", "blue", "cyan", "black", "white", "magenta"]
 
 class Bot(ValidacionTipos):
     def __init__(self, opciones: list, cantidad_respuestas: int) -> None:
@@ -17,3 +17,37 @@ class Bot(ValidacionTipos):
     
 bot1 = Bot(colores_disponibles,5)
 
+class Bot_2:
+    def __init__(self, tablero_principal, tablero_pistas, intentos_actuales) -> None:
+        self.__tablero_principal = tablero_principal
+        self.__tablero_pistas = tablero_pistas
+        self.__intentos_actuales = intentos_actuales
+        self.__respuestas = []
+    
+    def prueba(self):
+       opciones = ["red", "green", "yellow", "blue", "cyan", "black", "white", "magenta"]
+       if self.__intentos_actuales == 0:
+           print('Intento 0')
+           return random.sample(["red", "green", "yellow", "blue", "cyan", "black", "white", "magenta"], 5)
+       else:
+        respuesta = ['white' for n in range(5)]
+        for x in range(len(self.__tablero_pistas[self.__intentos_actuales])):
+            if self.__tablero_pistas[self.__intentos_actuales - 1][x][1] == 'green':
+                respuesta[x] =  self.__tablero_principal[self.__intentos_actuales - 1][x][1]
+            else:
+                
+                # if self.__tablero_pistas[self.__intentos_actuales - 1][x][1] == 'white': 
+                #    opciones.remove(self.__tablero_principal[self.__intentos_actuales - 1][x][1])
+            
+                respuesta[x] = random.choice(opciones)
+                  
+                
+        
+        return respuesta
+       
+    pass
+        
+
+    
+    
+    

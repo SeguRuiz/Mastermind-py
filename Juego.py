@@ -5,21 +5,33 @@ from ControlTrunos import ControlTurnos
 from PrintearTablero import PrintTableros
 from CrearTablero import CrearTablero
 import time
-from Bot import Bot
+from Bot import Bot, Bot_2
 
 
 class Juego(ValidacionTipos):
     def __init__(self, intentos: int) -> None:
+        self.validar_tipos(int, intentos)
+        self.__colores_permitidos = [
+            "red",
+            "green",
+            "yellow",
+            "blue",
+            "cyan",
+            "black",
+            "white",
+            "magenta",
+        ]
         self.__tablero_principal = CrearTablero("O", intentos)
         self.__tablero_pistas = CrearTablero("o", intentos)
         self.__mostrar_tableros = PrintTableros(
             self.__tablero_principal, self.__tablero_pistas
         ).print_tablero
+       
         self.__control_juego = ControlTurnos(
             self.__tablero_pistas,
             self.__tablero_principal,
             Bot(
-                ["red", "green", "yellow", "blue", "cyan", "black", "white", "magenta"],
+                self.__colores_permitidos,
                 5,
             ).bot_respuesta,
         )
@@ -52,8 +64,8 @@ class Juego(ValidacionTipos):
 
             if respuesta == "a":
                 self.__juego_defecto()
-            
-            if respuesta == 'b':
+
+            if respuesta == "b":
                 self.__juego_bot()
 
     def __juego_defecto(self) -> None:
@@ -61,7 +73,7 @@ class Juego(ValidacionTipos):
             self.__tablero_pistas,
             self.__tablero_principal,
             Bot(
-                ["red", "green", "yellow", "blue", "cyan", "black", "white", "magenta"],
+                self.__colores_permitidos,
                 5,
             ).bot_respuesta,
         )
@@ -75,6 +87,8 @@ class Juego(ValidacionTipos):
                 self.__control_juego.agregar_jugadas(colores_jugador)
                 self.__control_juego.agregar_pistas()
                 self.__mostrar_tableros()
+                self.__Bot_2 = Bot_2(self.__tablero_principal.tablero, self.__tablero_pistas.tablero, len(self.__control_juego.turnos) - 1)
+                self.__Bot_2.prueba()
 
         if self.__control_juego.limite == self.__control_juego.turnos_pasados:
             print("Se acabaron los intentos")
@@ -82,40 +96,36 @@ class Juego(ValidacionTipos):
             print("Hurra ganaste....")
 
     def __juego_bot(self):
-        respuesta = input('indica los colores que debe adivinar el bot: ').strip().lower().split()
-        
+        respuesta = (
+            input("indica los colores que debe adivinar el bot: ")
+            .strip()
+            .lower()
+            .split()
+        )
+
         if self.__comprobar_colores(respuesta):
-            print('Intenta denuevo')
+            print("Intenta denuevo")
         else:
-            self.__control_juego = ControlTurnos(self.__tablero_pistas, self.__tablero_principal, respuesta)
+            self.__control_juego = ControlTurnos(
+                self.__tablero_pistas, self.__tablero_principal, respuesta
+            )
             while not self.__control_juego.verificar_final():
-                self.__control_juego.agregar_jugadas(Bot(["red", "green", "yellow", "blue", "cyan", "black", "white", "magenta"], 5).bot_respuesta)
+                self.__control_juego.agregar_jugadas(
+                   Bot_2(self.__tablero_principal.tablero, self.__tablero_pistas.tablero, len(self.__control_juego.turnos)).prueba()
+                )
                 self.__control_juego.agregar_pistas()
                 self.__mostrar_tableros()
-                time.sleep(1)   
-        pass
+                time.sleep(0.5)
+      
 
     def __comprobar_colores(self, colores: list[str]) -> bool:
         combinacion_no_permitida = False
         for i in colores:
-            if (
-                i
-                not in [
-                    "red",
-                    "green",
-                    "yellow",
-                    "blue",
-                    "cyan",
-                    "black",
-                    "white",
-                    "magenta",
-                ]
-                or len(colores) != 5
-            ):
+            if i not in self.__colores_permitidos or len(colores) != 5:
                 combinacion_no_permitida = True
 
         return combinacion_no_permitida
 
 
-nuevo_juego = Juego()
+nuevo_juego = Juego(12)
 nuevo_juego.iniciar_juego()

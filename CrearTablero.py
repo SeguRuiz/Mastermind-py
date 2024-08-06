@@ -11,7 +11,7 @@ class CrearTablero(ValidacionTipos):
     ) -> None:
         self.validar_tipos(str, forma)
         self.validar_tipos(int, columnas)
-        self.__tablero: list[list[tuple[str]]] = []
+        self.__tablero: list[list[list[str, str]]] = []
         self.__forma = forma
         self.__columnas = columnas
         self.__formar_tablero()
@@ -45,7 +45,7 @@ class CrearTablero(ValidacionTipos):
             for y in range(len(self.__tablero[x])):
                 self.__tablero[x][y][1] = 'white'
 
-
+    
     @property
     def tablero(self):
         return self.__tablero

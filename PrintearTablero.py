@@ -31,7 +31,7 @@ class PrintTableros(ValidacionTipos):
                     end=" ",
                 )
                 
-           
+            sleep(0.1)
             print()
         print()
     

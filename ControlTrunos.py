@@ -1,11 +1,13 @@
-
 from ValidacionTipos import ValidacionTipos
 from CrearTablero import CrearTablero
 
 
 class ControlTurnos(ValidacionTipos):
     def __init__(
-        self, tablero_pistas: CrearTablero, tablero_principal: CrearTablero, Adivinar: list[str]
+        self,
+        tablero_pistas: CrearTablero,
+        tablero_principal: CrearTablero,
+        Adivinar: list[str],
     ) -> None:
         self.validar_tipos(CrearTablero, tablero_pistas)
         self.validar_tipos(CrearTablero, tablero_principal)
@@ -15,10 +17,9 @@ class ControlTurnos(ValidacionTipos):
         self.__tablero_principal = tablero_principal
         self.__limite_turnos = len(tablero_pistas.tablero)
         self.__lista_colores = Adivinar
-        self.__turnos:list[list[str]] | list[None] = []
-        self.__pistas:list[list[str]] | list[None] = []
+        self.__turnos: list[list[str]] | list[None] = []
+        self.__pistas: list[list[str]] | list[None] = []
         self.__turnos_pasados = 0
-       
 
     def agregar_jugadas(self, colores: list[str]) -> None:
         self.validar_tipos(list, colores)
@@ -27,8 +28,9 @@ class ControlTurnos(ValidacionTipos):
         self.__tablero_principal.cambiar_color_fila(self.__turnos)
 
     def agregar_pistas(self) -> None:
-        
-        resultado:list[str] = []
+
+        resultado: list[str] = []
+       
         
         for x in range(len(self.__lista_colores)):
             if self.__lista_colores[x] == self.__turnos[self.turnos_pasados - 1][x]:
@@ -38,9 +40,11 @@ class ControlTurnos(ValidacionTipos):
             else:
                 resultado.append("white")
 
+        
         self.__pistas.append(resultado)
         self.__tablero_pistas.cambiar_color_fila(self.__pistas)
 
+    
     def verificar_final(self) -> bool:
         fin_del_juego = False
         for i in self.__turnos:
@@ -59,18 +63,19 @@ class ControlTurnos(ValidacionTipos):
     @property
     def turnos(self) -> list[list[str]] | list[None]:
         return self.__turnos
-    
+
     @turnos.setter
     def turnos(self, vacio):
         self.__turnos = vacio
-        
+
     @property
     def pistas(self):
         return self.__pistas
-    
+
     @pistas.setter
     def pistas(self, vacio):
         self.__pistas = vacio
+
     @property
     def turnos_pasados(self) -> int:
         return self.__turnos_pasados
@@ -78,7 +83,3 @@ class ControlTurnos(ValidacionTipos):
     @property
     def limite(self) -> int:
         return self.__limite_turnos
-    
-   
-        
-
