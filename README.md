@@ -4,19 +4,19 @@ a continuacion hare un listado de las clases principales y su rol.
 
 ## CrearTablero
 
-**Uso general:** Tener un control en la creacion y manipulacion del tablero
+**Uso general:** Tener un control en la creacion y manipulacion del tablero.
 
 1. Al ser inicializado crea un tablero de 5 columnas y de x filas, dependiendo
 del segundo parametro que reciba, encargado de definir la cantidad de columnas.
 
-2. Recibir un array de strings (cuales serian los turnos dados) y en base a eso,
+2. Recibir un array de strings (serian los turnos dados) y en base a eso,
 cambiar los colores por defecto de el tablero creado.
 
 3. Reiniciar el tablero a sus colores originales el cual seria 'white'.
 
 ## ValidacionTipos
 
-**Uso general:** Ser reutilizable en las otras clases, para no repetir funciones necesarias de validacio tipo.
+**Uso general:** Ser reutilizable en las otras clases, para no repetir funciones necesarias de validacion tipo.
 
 1. Las demas clases heredan de esta para tener acceso a sus funciones necesarias
 en todas estas y no repetirme mucho.
@@ -53,7 +53,7 @@ el fin del juego y reinici los dos tableros junto con las pistas y turnos.
 
 ## Juego
 
-**Uso general:** Contener los dos modos de juegos principales e inicializar el juego
+**Uso general:** Contener los dos modos de juegos principales e inicializar el juego.
 
 1. Contener las clases los colores permitiods a escojer, e inicializar las demas clases 
 anteriores para ser utilizadas en el flujo del juego.
