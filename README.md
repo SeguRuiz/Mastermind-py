@@ -65,7 +65,7 @@ anteriores para ser utilizadas en el flujo del juego.
 
 ## Bot 
 
-**Uso general:** Terner un array random de 5 colores diferentes a disposicion.
+**Uso general:** Tener un array random de 5 colores diferentes a disposicion.
 
 1. Es utilizado para definir la lista oculta de colores en cada partida normal del jugador
 
