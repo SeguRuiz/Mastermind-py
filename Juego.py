@@ -21,7 +21,7 @@ class Juego(ValidacionTipos):
             "magenta",
         ]
         self.__tablero_principal = CrearTablero("O", intentos)
-        self.__tablero_pistas = CrearTablero("?", intentos)
+        self.__tablero_pistas = CrearTablero("o", intentos)
         self.__mostrar_tableros = PrintTableros(
             self.__tablero_principal, self.__tablero_pistas
         ).print_tablero
@@ -40,7 +40,7 @@ class Juego(ValidacionTipos):
     def iniciar_juego(self):
         print()
         print(
-            "Los posibles colores a encontrar son: red, green, yellow, blue, cyan, black, white, magenta"
+            "Los posibles colores a encontrar son: red, green, yellow, blue, cyan, black, white, magenta, sera una combinacion de 5 diferentes"
         )
         print('Los colores pueden ser colocados de est forma: color color color color colo, sin comas solo espacios')
         print(
@@ -84,7 +84,7 @@ class Juego(ValidacionTipos):
             colores_jugador = input("Indica tus colores: ").strip().lower().split()
 
             if self.__comprobar_colores(colores_jugador):
-                print("Intenta denuevo")
+                print("Deben ser 5 colores diferentes separados por espacio")
             else:
                 self.__control_juego.agregar_jugadas(colores_jugador)
                 self.__control_juego.agregar_pistas()
@@ -105,7 +105,7 @@ class Juego(ValidacionTipos):
         )
 
         if self.__comprobar_colores(respuesta):
-            print("Intenta denuevo")
+            print("Deben ser 5 colores diferentes separados por espacio")
         else:
             self.__control_juego = ControlTurnos(
                 self.__tablero_pistas, self.__tablero_principal, respuesta
@@ -128,7 +128,7 @@ class Juego(ValidacionTipos):
     def __comprobar_colores(self, colores: list[str]) -> bool:
         combinacion_no_permitida = False
         for i in colores:
-            if i not in self.__colores_permitidos or len(colores) != 5:
+            if i not in self.__colores_permitidos or len(colores) != 5 or len(list(set(colores))) != 5:
                 combinacion_no_permitida = True
 
         return combinacion_no_permitida

@@ -27,8 +27,12 @@ class Bot(ValidacionTipos):
 bot1 = Bot(colores_disponibles, 5)
 
 
-class Bot_2:
-    def __init__(self, tablero_principal, tablero_pistas, intentos_actuales, no_tocar) -> None:
+class Bot_2(ValidacionTipos):
+    def __init__(self, tablero_principal: list[list[list[str,str]]], tablero_pistas:  list[list[list[str,str]]], intentos_actuales: int, no_tocar: list[list[str]]) -> None:
+        self.validar_tipos(list, tablero_principal)
+        self.validar_tipos(list, tablero_pistas)
+        self.validar_tipos(int, intentos_actuales)
+        self.validar_tipos(list, no_tocar)
         self.__tablero_principal = tablero_principal
         self.__tablero_pistas = tablero_pistas
         self.__intentos_actuales = intentos_actuales
@@ -66,8 +70,7 @@ class Bot_2:
 
                             respuesta[x] = n
                 else:
-                    print(self.__no_tocar)
-                    respuesta[x] = random.choice([c for c in opciones if c not in self.__no_tocar])
+                    respuesta[x] = random.choice([c for c in opciones if c not in self.__no_tocar[0] and c not in self.__no_tocar[1]])
                 
         return respuesta
 

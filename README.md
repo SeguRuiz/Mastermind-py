@@ -63,6 +63,19 @@ anteriores para ser utilizadas en el flujo del juego.
 3. Dependiendo de la respuesta del usuario inicializar la funcion de juego por defecto o juego con el bot.
 
 
+## Bot 
 
+**Uso general:** Terner un array random de 5 colores diferentes a disposicion.
 
+1. Es utilizado para definir la lista oculta de colores en cada partida normal del jugador
+
+## Bot_2
+
+**Uso general:** Tomar el rol del bot, cuando este tiene que adivinar.
+
+1. Al ser inicializado recibe los dos tableros, el turno actual, y una lista de colores a no escojer
+
+2. Al ser el primer turno retornara de respuesta un array de colores random y despues de esto comparara sus
+elecciones anteriores, como si el color anterior fue correcto para no utilizarlo o si fue un color que no esta
+para nunca utilizarlo.
 
