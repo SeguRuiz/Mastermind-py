@@ -1,9 +1,7 @@
-from colored import Fore, Back, Style, fore, style, back
 from ValidacionTipos import ValidacionTipos
 
 
 class CrearTablero(ValidacionTipos):
-
     def __init__(
         self,
         forma: str,
@@ -17,7 +15,6 @@ class CrearTablero(ValidacionTipos):
         self.__formar_tablero()
 
     def __formar_tablero(self):
-
         for x in range(self.__columnas):
             self.__tablero.append(
                 [
@@ -43,9 +40,8 @@ class CrearTablero(ValidacionTipos):
     def reiniciar_tablero(self):
         for x in range(len(self.__tablero)):
             for y in range(len(self.__tablero[x])):
-                self.__tablero[x][y][1] = 'white'
+                self.__tablero[x][y][1] = "white"
 
-    
     @property
     def tablero(self):
         return self.__tablero

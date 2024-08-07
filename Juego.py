@@ -21,7 +21,7 @@ class Juego(ValidacionTipos):
             "magenta",
         ]
         self.__tablero_principal = CrearTablero("O", intentos)
-        self.__tablero_pistas = CrearTablero("o", intentos)
+        self.__tablero_pistas = CrearTablero("?", intentos)
         self.__mostrar_tableros = PrintTableros(
             self.__tablero_principal, self.__tablero_pistas
         ).print_tablero
@@ -34,6 +34,8 @@ class Juego(ValidacionTipos):
                 5,
             ).bot_respuesta,
         )
+        
+    
 
     def iniciar_juego(self):
         print()
@@ -87,8 +89,7 @@ class Juego(ValidacionTipos):
                 self.__control_juego.agregar_jugadas(colores_jugador)
                 self.__control_juego.agregar_pistas()
                 self.__mostrar_tableros()
-                self.__Bot_2 = Bot_2(self.__tablero_principal.tablero, self.__tablero_pistas.tablero, len(self.__control_juego.turnos) - 1)
-                self.__Bot_2.prueba()
+
 
         if self.__control_juego.limite == self.__control_juego.turnos_pasados:
             print("Se acabaron los intentos")
@@ -111,9 +112,10 @@ class Juego(ValidacionTipos):
             )
             while not self.__control_juego.verificar_final():
                 self.__control_juego.agregar_jugadas(
-                   Bot_2(self.__tablero_principal.tablero, self.__tablero_pistas.tablero, len(self.__control_juego.turnos)).prueba()
+                   Bot_2(self.__tablero_principal.tablero, self.__tablero_pistas.tablero, len(self.__control_juego.turnos), self.__control_juego.no_tocar).prueba()
                 )
                 self.__control_juego.agregar_pistas()
+                self.__control_juego.colores_blanco()
                 self.__mostrar_tableros()
                 time.sleep(0.5)
             

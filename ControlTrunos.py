@@ -19,6 +19,7 @@ class ControlTurnos(ValidacionTipos):
         self.__lista_colores = Adivinar
         self.__turnos: list[list[str]] | list[None] = []
         self.__pistas: list[list[str]] | list[None] = []
+        self.__no_tocar = []
         self.__turnos_pasados = 0
 
     def agregar_jugadas(self, colores: list[str]) -> None:
@@ -43,7 +44,14 @@ class ControlTurnos(ValidacionTipos):
         
         self.__pistas.append(resultado)
         self.__tablero_pistas.cambiar_color_fila(self.__pistas)
-
+    
+    def colores_blanco(self):
+         for x in range(len(self.__lista_colores)):
+            if self.__turnos[self.turnos_pasados - 1][x] not in self.__lista_colores:
+                self.__no_tocar.append(self.__turnos[self.turnos_pasados - 1][x])
+    
+    
+        
     
     def verificar_final(self) -> bool:
         fin_del_juego = False
@@ -79,7 +87,11 @@ class ControlTurnos(ValidacionTipos):
     @property
     def turnos_pasados(self) -> int:
         return self.__turnos_pasados
-
+    
     @property
     def limite(self) -> int:
         return self.__limite_turnos
+    
+    @property
+    def no_tocar(self):
+        return self.__no_tocar
